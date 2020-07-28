@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+/* CSS for MAIN APP */ 
+
+
+#MainTittle {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.15;
+    margin-top: 0;
+    color:rgb(68, 216, 125);
+}
+
+#jumb{
+  background-color:transparent !important; 
+  margin: 0 !important;
+}
+

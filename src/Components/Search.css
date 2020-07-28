@@ -1,0 +1,20 @@
+
+#searchBar {
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    text-align: left;
+}
+
+
+#searchBar::placeholder{
+
+    color:rgb(147, 214, 173);
+
+}
+
+#buttonBar{
+
+    text-align: center;
+    background-color:rgb(68, 216, 125);
+    border-color:rgb(68, 216, 125);
+}

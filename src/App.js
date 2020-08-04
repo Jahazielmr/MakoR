@@ -2,12 +2,37 @@ import React, { Component } from 'react';
 import Search from './Components/Search';
 import ImageCollection from './Components/ImageCollection'
 import './App.css';
+import fire from "./Fire/Fire";
+
+
 
 class App extends Component {
 
+  componentWillMount(){
+    /*Get IP using fetch*/
+    fetch('https://api.ipify.org?format=json?callback=?',{
+
+      method: 'GET',
+      headers: {},
+
+    })
+    .then(res => {
+      return res.text()
+    }).then(ip => {
+
+      this.setState({
+        ip1: ip
+      })
+
+      console.log('ip', ip);
+    }).catch()
+  }
+
+
   state = {
     textData1: '',
-    images: []
+    images: [],
+    ip1:''
   }
 
   APIconsult = () => {
@@ -43,6 +68,7 @@ class App extends Component {
 
         <Search
           searchData={this.searchData}
+          ip= {this.state.ip1}
         />
 
         <ImageCollection

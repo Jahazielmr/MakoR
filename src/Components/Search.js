@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import './Search.css'
+import './Search.css';
+import Fire from "../Fire/Fire";
+
 
 class Search extends Component {
 
@@ -13,7 +15,71 @@ class Search extends Component {
         console.log(this.searchRef.current.value);
         console.log(textData.length);
         this.props.searchData(textData);
-        
+        const ip1 = this.props.ip;
+
+        var databaseService = Fire.database();
+        var ref = databaseService.ref('Users');
+
+        Fire.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var today = new Date();
+                var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+                ref.push({
+                    ID: user.uid,
+                    Time: today.toLocaleTimeString(),
+                    Date: date,
+                    IP: ip1,
+                    Busqueda: textData
+                })  .then(function() {
+                    console.log('dato almacenado correctamente');
+                })
+                .catch(function(error) {
+                    console.log('detectado un error', error);
+                });
+                // ...
+            } else {
+                // User is signed out.
+                // ...
+            }
+            // ...
+        });
+
+
+
+        /* Fire.auth().signInAnonymously().catch(function (error) {
+              //write on DataBase.
+  
+              Fire.auth().onAuthStateChanged(function (user) {
+                  
+                  if (user) {
+                      // User is signed in.
+                     /* var isAnonymous = user.isAnonymous;
+                      var uid = user.uid;
+                      var db = Fire.database();
+                      var ref = db.ref.child('Users');
+  
+                      Fire.database().ref(`/users/${uid}`).set(user.child('Users').child('ID'));
+                      // Fire.database().ref.child('Users').child('ID').set(Fire.user.uid);
+                      //ref.child('ID').push('wdad21');*/
+
+
+
+
+        /*  } else {
+              // User is signed out.
+              // ...
+          }
+
+      });
+
+
+  });*/
+
+
     }
 
     render() {

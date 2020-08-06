@@ -1,0 +1,19 @@
+
+.btn-primary {
+   /* background-color:rgb(68, 216, 125);
+    border-color:rgb(68, 216, 125); ORIGINAL GREEN : #44D87D
+    #78C2AD ORIGINAL BLUE, Alternative blue: 43D9C9
+   */
+
+   background-color:#44C38A;
+    border-color:#44C38A;
+}
+
+
+.card-img-top {
+    width: 100%;
+    /* height: 11.6vw;*/
+    height: 180px;
+    object-fit: cover;
+}
+

@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import Search from './Components/Search';
 import ImageCollection from './Components/ImageCollection'
 import './App.css';
-import fire from "./Fire/Fire";
-
-
 
 class App extends Component {
 
@@ -24,7 +21,6 @@ class App extends Component {
         ip1: ip
       })
 
-      console.log('ip', ip);
     }).catch()
   }
 
@@ -32,11 +28,80 @@ class App extends Component {
   state = {
     textData1: '',
     images: [],
-    ip1:''
+    ip1:'',
+    page: ''
+  }
+
+
+  automatedScroll = () =>{
+
+    const elemento = document.querySelector('.jumbotron');
+    elemento.scrollIntoView('smooth', 'start');
+
+  }
+
+  previousPage= () =>{
+
+     //read current page state
+
+     let page = this.state.page;
+
+     //if page value =1 return null
+
+     if(page==1) return null;
+
+     //currentpage + 1
+ 
+     page -=1; 
+ 
+ 
+     //set state with new values
+ 
+     this.setState({
+       page
+     }, () => {
+       this.APIconsult();
+       this.automatedScroll();
+     });
+ 
+ 
+     console.log(page);
+
+  }
+
+  
+  nextPage= () =>{
+
+    //read current page state
+
+    let page = this.state.page;
+
+    //currentpage + 1
+
+    page +=1; 
+
+
+    //add to state in order to get 3,4,5,6 value after complete the add process
+    //without this part, the function will be adding +1 to page state and page state will be 1 ever.
+    // That is why is necessary to change the state.
+
+    this.setState({
+      page
+    }, () => {
+      this.APIconsult();
+      this.automatedScroll();
+    });
+
+
+    console.log(page);
+    
   }
 
   APIconsult = () => {
-    const url = `https://pixabay.com/api/?key=17658002-78004488455a0b123ed9c9f52&q=${this.state.textData1}&per_page=50`;
+
+    const page = this.state.page;
+    const url = `https://pixabay.com/api/?key=17658002-78004488455a0b123ed9c9f52&q=${this.state.textData1}&per_page=20&page=${page}`;
+
     console.log(url);
 
     /*Usando fetch para interpretar los archivos jason generados*/
@@ -49,6 +114,7 @@ class App extends Component {
 
     this.setState({
       textData1: textData,
+      page: 1
     }, () => {
       /* Hacer la busqueda de imagenes con el state actual*/
       this.APIconsult();
@@ -57,10 +123,9 @@ class App extends Component {
   }
 
 
-
   render() {
     return (
-      <div className="container">
+      <div  className="container">
 
         <div id="jumb" className="jumbotron">
           <h1 className="lead text-center" id="MainTittle"> Mako Emerald </h1>
@@ -74,9 +139,11 @@ class App extends Component {
         <ImageCollection
           images={this.state.images}
           input={this.state.textData1}
-        />
+          nextPage= {this.nextPage}
+          previousPage = {this.previousPage}
+          pageNumber= {this.state.page}
 
-        {console.log("hal" + this.state.images.length)}
+        />
 
       </div>
 

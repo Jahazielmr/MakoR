@@ -20,16 +20,16 @@ class Search extends Component {
         var databaseService = Fire.database();
         var ref = databaseService.ref('Users');
 
-        Fire.auth().onAuthStateChanged(function (user) {
-            if (user) {
+        //Fire.auth().onAuthStateChanged(function (user) {
+          //  if (user) {
                 // User is signed in.
-                var isAnonymous = user.isAnonymous;
-                var uid = user.uid;
+         //       var isAnonymous = user.isAnonymous;
+           //     var uid = user.uid;
                 var today = new Date();
                 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
                 ref.push({
-                    ID: user.uid,
+                    //ID: user.uid,
                     Time: today.toLocaleTimeString(),
                     Date: date,
                     IP: ip1,
@@ -41,12 +41,11 @@ class Search extends Component {
                     console.log('detectado un error', error);
                 });
                 // ...
-            } else {
-                // User is signed out.
-                // ...
-            }
+            //} else {
+                
+            //}
             // ...
-        });
+       // });
 
 
 
@@ -87,7 +86,7 @@ class Search extends Component {
 
             <form onSubmit={this.getuserInput} >
 
-                <div className="container w-50">
+                <div id="search" className="container w-50">
                     <div className="row">
                         <div className="form-group col-12 ">
                             <input id="searchBar" ref={this.searchRef} type="text" className="form-control form-control-lg" placeholder="Music, Movies, Martial Arts..." />

@@ -41,13 +41,38 @@
 
 
 #MainTittle {
-    font-size: 45px;
+    font-size: 3.5vw;
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 0.15;
     margin-top: 0;
-    color:rgb(68, 216, 125);
+    color:#44C38A;
+ 
 }
+
+/*Responsive Main Title using media querys*/
+
+@media(max-width: 800px){
+  #MainTittle{
+    font-size: 5vw;
+  }  
+}
+
+
+@media(max-width: 500px){
+  #MainTittle{
+    font-size: 8.3vw;
+  }  
+}
+
+@media(max-width: 300px){
+  #MainTittle{
+    font-size: 9vw;
+  }  
+}
+
+/*End Responsive title*/
+
 
 #jumb{
   background-color:transparent !important; 

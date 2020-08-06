@@ -3,6 +3,7 @@
     font-weight: 500;
     letter-spacing: -0.04em;
     text-align: left;
+    
 }
 
 
@@ -14,6 +15,19 @@
 
 #buttonBar{
     text-align: center;
-    background-color:rgb(68, 216, 125);
-    border-color:rgb(68, 216, 125);
+    background-color:#44C38A;
+    border-color:#44C38A;;
+    color: #ffffff;
+    font-weight: 1000;
+}
+
+@media (max-width: 768px){
+
+    #search{
+
+        width: 85vw !important;
+        
+    }
+
+
 }

@@ -9,13 +9,13 @@ class ImageCollection extends Component {
 
         const images = this.props.images;
 
-        console.log("imagesLength"+images.length);
+        console.log("imagesLength" + images.length);
 
-        const input= this.props.input;
+        const input = this.props.input;
 
-        if (input.length===0 && images.length === 0) return null;        
+        if (input.length === 0 && images.length === 0) return null;
 
-        if (input.length>0 && images.length == 0) {
+        if (input.length > 0 && images.length == 0) {
             return (
                 <div className="lead text-center">
                     <p1 class="text-center font-weight-bold mt-10" >Nothing was found for {input}</p1>
@@ -36,7 +36,12 @@ class ImageCollection extends Component {
                         ))}
                     </div>
 
-                    <Pagination/> 
+                    <Pagination
+
+                        nextPage={this.props.nextPage}
+                        previousPage={this.props.previousPage}
+                        pageNumber = {this.props.pageNumber}
+                    />
 
                 </div>
             </React.Fragment>
